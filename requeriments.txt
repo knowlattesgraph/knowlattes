@@ -1,0 +1,20 @@
+pytidylib
+tidy
+rdflib
+owlready2
+Ontospy
+graphviz
+tqdm
+mechanize
+Levenshtein
+
+# Optinal but Good to have
+ipywidgets
+recommonmark
+sphinx
+mkdocs
+autodoc
+nbsphinx
+sphinx-rtd-theme
+sphinxcontrib-napoleon
+
