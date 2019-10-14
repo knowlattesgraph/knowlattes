@@ -1,0 +1,10 @@
+pytidylib
+tidy
+rdflib
+owlready2
+Ontospy
+graphviz
+tqdm
+
+# Optinal but Good to have
+ipywidgets
