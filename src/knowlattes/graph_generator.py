@@ -1,7 +1,23 @@
 
 def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
-    """
-        Given a lattes page object, adds all the possible triples on graph
+    """Given a lattes page object, adds all the possible triples on graph
+
+    It adds a lattes page to RDFLib graph given a schema
+
+    Parameters
+    ----------
+    lattes_page : lattes_object
+        Lattes page object
+    graph : rdflib_graph
+        RDFLib graph
+    schema: rdflib_schema
+        RDFLib schema
+
+    Returns
+    -------
+    None
+
+
     """
     import re
     import hashlib
@@ -180,8 +196,14 @@ def find_non_lattes_pages(dir_path, list_of_files):
     return not_lattes_pages
 
 def generate_graph():
-    """
-        Main function that, will parse all the cache folder and will generate a graph with all its content
+    """Main function that, will parse all the cache folder and will generate a graph with all its content
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+
     """
 
     from rdflib import Graph, Namespace, plugin

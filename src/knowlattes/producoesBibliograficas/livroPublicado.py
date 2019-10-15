@@ -25,7 +25,7 @@
 
 # from scriptLattes.geradorDePaginasWeb import *
 import re
-from util import similaridade_entre_cadeias
+from knowlattes.util import similaridade_entre_cadeias
 
 
 class LivroPublicado:

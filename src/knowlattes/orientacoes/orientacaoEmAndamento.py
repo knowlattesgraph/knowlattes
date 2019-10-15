@@ -25,7 +25,7 @@
 import re
 
 # from scriptLattes.geradorDePaginasWeb import *
-from util import similaridade_entre_cadeias
+from knowlattes.util import similaridade_entre_cadeias
 
 
 class OrientacaoEmAndamento:

@@ -1,12 +1,12 @@
-pytidylib
-tidy
-rdflib
-owlready2
+pytidylib==0.3.2
+tidy==2018.5
+rdflib==4.2.2
+owlready2==0.21
 Ontospy
 graphviz
 tqdm
-mechanize
-Levenshtein
+mechanize==0.4.3
+python-Levenshtein
 
 # Optinal but Good to have
 ipywidgets

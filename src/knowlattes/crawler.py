@@ -6,8 +6,8 @@
 import sys, os
 import codecs
 
-from baixaLattes3 import baixaCVLattes
-from parserLattes3 import ParserLattes
+from knowlattes.baixa_lattes import baixaCVLattes
+from parser_lattes import ParserLattes
 
 DIRETORIO_CACHE = "./cache"
 ID_FILE_TYPE = ".html"
@@ -16,8 +16,20 @@ MEM_CACHE_SIZE = 50000
 
 
 def criarDiretorio(dir):
-    """
-        Creates a directory if it doesnt' exists
+    """Creates a directory if it doesnt' exists
+
+    Extended description of function.
+
+    Parameters
+    ----------
+    arg1 : dir
+        path to create the directory
+
+    Returns
+    -------
+    int
+        0 if error or 1 if correct
+
     """
     if not os.path.exists(dir):
         try:
@@ -30,8 +42,23 @@ def criarDiretorio(dir):
 
 
 def baixa_lattes(id_membro, debug=False):
-    """
-        Download a CV file of a give id_membro
+    """Download a CV file of a give id_membro
+
+    It checks if th lattes page already have been doewloaded, if not, it downloads it calling
+    baixaCVLattes.
+
+    Parameters
+    ----------
+    id_membro : str
+        String of lattes id
+    debug : bool
+        if should print debug
+
+    Returns
+    -------
+    lattes_page
+        return the object of lattes
+
     """
     cvPath = DIRETORIO_CACHE + "/" + idMembro + ID_FILE_TYPE
 
@@ -59,20 +86,44 @@ def baixa_lattes(id_membro, debug=False):
 
 
 def exception_handler(exception_type, exception, traceback):
-    """
-        This function is a handler for log output.
-        As lattes pages are in iso8859, using this function will hide all the warning outputs generated
-        by the parser
+    """ Error handler
+
+    This function is a handler for log output.
+    As lattes pages are in iso8859, using this function will hide all the warning outputs generated
+    by the parser
+
+    Parameters
+    ----------
+    exception_type : any
+        ---
+    exception : any
+        ---
+    traceback: any
+        ---
+
+    Returns
+    -------
+    str
+        Error message to be displayed
+
     """
     return ""  # "%s: %s" % (exception_type.__name__, exception)
 
 
 def crawler_main():
+    """ Crawlers
+
+    Crawler a lattes_id, getting all the sub ids and crawling them.
+    This will download all the linked pages
+
+    Parameters
+    ----------
+
+    Returns
+    -------
+    None
+
     """
-        Crawler a lattes_id, getting all the sub ids and crawling them.
-        This will download all the linked pages
-    """
-    ## Varialbles
     sys.excepthook = exception_handler
 
     idMembro = sys.argv[1]

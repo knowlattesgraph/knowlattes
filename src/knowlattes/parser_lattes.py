@@ -25,51 +25,56 @@
 import sys, re
 from html.entities import name2codepoint
 from tidylib import tidy_document
-import pdb
-
 
 # ---------------------------------------------------------------------------- #
 from html.parser import HTMLParser
-from producoesUnitarias.formacaoAcademica import *
-from producoesUnitarias.areaDeAtuacao import *
-from producoesUnitarias.idioma import *
-from producoesUnitarias.premioOuTitulo import *
-from producoesUnitarias.projetoDePesquisa import *
+from knowlattes.producoesUnitarias.formacaoAcademica import *
+from knowlattes.producoesUnitarias.areaDeAtuacao import *
+from knowlattes.producoesUnitarias.idioma import *
+from knowlattes.producoesUnitarias.premioOuTitulo import *
+from knowlattes.producoesUnitarias.projetoDePesquisa import *
 
-from producoesBibliograficas.artigoEmPeriodico import *
-from producoesBibliograficas.livroPublicado import *
-from producoesBibliograficas.capituloDeLivroPublicado import *
-from producoesBibliograficas.textoEmJornalDeNoticia import *
-from producoesBibliograficas.trabalhoCompletoEmCongresso import *
-from producoesBibliograficas.resumoExpandidoEmCongresso import *
-from producoesBibliograficas.resumoEmCongresso import *
-from producoesBibliograficas.artigoAceito import *
-from producoesBibliograficas.apresentacaoDeTrabalho import *
-from producoesBibliograficas.outroTipoDeProducaoBibliografica import *
+from knowlattes.producoesBibliograficas.artigoEmPeriodico import *
+from knowlattes.producoesBibliograficas.livroPublicado import *
+from knowlattes.producoesBibliograficas.capituloDeLivroPublicado import *
+from knowlattes.producoesBibliograficas.textoEmJornalDeNoticia import *
+from knowlattes.producoesBibliograficas.trabalhoCompletoEmCongresso import *
+from knowlattes.producoesBibliograficas.resumoExpandidoEmCongresso import *
+from knowlattes.producoesBibliograficas.resumoEmCongresso import *
+from knowlattes.producoesBibliograficas.artigoAceito import *
+from knowlattes.producoesBibliograficas.apresentacaoDeTrabalho import *
+from knowlattes.producoesBibliograficas.outroTipoDeProducaoBibliografica import *
 
-from producoesTecnicas.softwareComPatente import *
-from producoesTecnicas.softwareSemPatente import *
-from producoesTecnicas.produtoTecnologico import *
-from producoesTecnicas.processoOuTecnica import *
-from producoesTecnicas.trabalhoTecnico import *
-from producoesTecnicas.outroTipoDeProducaoTecnica import *
+from knowlattes.producoesTecnicas.softwareComPatente import *
+from knowlattes.producoesTecnicas.softwareSemPatente import *
+from knowlattes.producoesTecnicas.produtoTecnologico import *
+from knowlattes.producoesTecnicas.processoOuTecnica import *
+from knowlattes.producoesTecnicas.trabalhoTecnico import *
+from knowlattes.producoesTecnicas.outroTipoDeProducaoTecnica import *
 
-from producoesArtisticas.producaoArtistica import *
+from knowlattes.producoesArtisticas.producaoArtistica import *
 
-from orientacoes.orientacaoEmAndamento import *
-from orientacoes.orientacaoConcluida import *
+from knowlattes.orientacoes.orientacaoEmAndamento import *
+from knowlattes.orientacoes.orientacaoConcluida import *
 
-from eventos.organizacaoDeEvento import *
-from eventos.participacaoEmEvento import *
+from knowlattes.eventos.organizacaoDeEvento import *
+from knowlattes.eventos.participacaoEmEvento import *
 
 sys.tracebacklimit = 0
 
 
 class ParserLattes(HTMLParser):
-    """
-        This is the class that starts the HTML page parser.
-        It will go though each one of the html tags, searching for known patterns and filling the object lattes page
-        with its info
+    """This is the class that starts the HTML page parser.
+    
+    It will go though each one of the html tags, searching for known patterns and filling the object lattes page
+    with its info
+
+    Parameters
+    ----------
+    
+    Returns
+    -------
+    
     """
 
     identificador16 = ""
@@ -233,8 +238,20 @@ class ParserLattes(HTMLParser):
 
     # ------------------------------------------------------------------------ #
     def __init__(self, id_membro, cv_lattes_html):
-        """
-            Parse the page, receiving the id_membro and the cv_lattes_html page
+        """Parse the page, receiving the id_membro and the cv_lattes_html page
+
+        Parameters
+        ----------
+        id_membro : str
+            membro_id of lattes
+        cv_lattes_html : str
+            html page of id_membro
+
+        Returns
+        -------
+        lattes_page: Object
+            Lattes page object
+
         """
         HTMLParser.__init__(self)
 
