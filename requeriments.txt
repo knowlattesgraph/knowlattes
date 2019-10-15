@@ -1,5 +1,5 @@
 pytidylib==0.3.2
-Tidy==2018.5
+Tidy
 rdflib==4.2.2
 owlready2==0.21
 Ontospy
