@@ -15,10 +15,8 @@ Contents
 ========
 
 .. toctree::
-   :maxdepth: 1
+   :maxdepth: 2
 
    getting_started
-   examples/index
-   api
-   contributing
-   api/*
+   example
+   api/modules

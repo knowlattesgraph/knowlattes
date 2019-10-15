@@ -7,7 +7,7 @@ import sys, os
 import codecs
 
 from knowlattes.baixa_lattes import baixaCVLattes
-from parser_lattes import ParserLattes
+from knowlattes.parser_lattes import ParserLattes
 
 DIRETORIO_CACHE = "./cache"
 ID_FILE_TYPE = ".html"

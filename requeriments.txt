@@ -17,4 +17,5 @@ autodoc
 nbsphinx
 sphinx-rtd-theme
 sphinxcontrib-napoleon
-
+Pillow==6.2.0
+simplejson==3.16.0
