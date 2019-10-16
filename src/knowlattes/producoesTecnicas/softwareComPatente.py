@@ -43,6 +43,7 @@ class SoftwareComPatente:
     chave = None
 
     """
+
     item = None  # dado bruto
     idMembro = None
 

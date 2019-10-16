@@ -46,6 +46,7 @@ class TextoEmJornalDeNoticia:
     chave = None
 
     """
+
     item = None  # dado bruto
     idMembro = None
     ano = None

@@ -43,6 +43,7 @@ class OutroTipoDeProducaoBibliografica:
     chave = None
 
     """
+
     item = None  # dado bruto
     idMembro = None
 

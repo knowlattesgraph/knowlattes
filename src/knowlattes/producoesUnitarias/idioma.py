@@ -36,6 +36,7 @@ class Idioma:
     proficiencia = ""
 
     """
+
     descricao = ""
     nome = ""
     proficiencia = ""

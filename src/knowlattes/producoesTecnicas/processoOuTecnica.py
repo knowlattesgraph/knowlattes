@@ -30,7 +30,7 @@ import re
 
 
 class ProcessoOuTecnica:
-     """ Another Production Type
+    """ Another Production Type
 
     Attributes
     ----------
@@ -44,6 +44,7 @@ class ProcessoOuTecnica:
     chave = None
 
     """
+
     item = None  # dado bruto
     idMembro = None
 

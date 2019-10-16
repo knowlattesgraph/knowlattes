@@ -37,6 +37,7 @@ class FormacaoAcademica:
     descricao = ""
 
     """
+
     anoInicio = None
     anoConclusao = None
     tipo = ""

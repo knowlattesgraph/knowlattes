@@ -47,6 +47,7 @@ class CapituloDeLivroPublicado:
     chave = None
 
     """
+
     item = None  # dado bruto
     idMembro = None
 

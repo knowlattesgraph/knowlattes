@@ -33,6 +33,7 @@ class AreaDeAtuacao:
     descricao = ""
 
     """
+
     descricao = ""
 
     def __init__(self, partesDoItem):

@@ -1,4 +1,3 @@
-
 def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
     """Given a lattes page object, adds all the possible triples on graph
 
@@ -172,6 +171,7 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
         add_triple((URIRef(nome_md5), schema.editor, Literal(editora)))
         add_triple((URIRef(nome_md5), schema.pagination, Literal(paginas)))
 
+
 def generate_graph():
     """Main function that, will parse all the cache folder and will generate a graph with all its content
 
@@ -202,11 +202,11 @@ def generate_graph():
 
     # for lattes_page in tqdm_notebook(lattes_profile_list):
     #     lattes_id = re.sub('.html', '', lattes_page)
-    
+
     #     file = open(basePath+lattes_page, 'r',  encoding="ISO-8859-1")
     #     lattes_file = file.read()
     #     file.close()
 
     #     lattes_page = ParserLattes(lattes_id, lattes_file)
-        
+
     #     add_lattes_reasercher_to_graph(new_graph, lattes_page, schema)

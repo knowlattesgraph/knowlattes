@@ -42,29 +42,29 @@ class OutputStream:
     -------
     
     """
-    def __init__(self, output, encoding):
-    """This is the class that starts the HTML page parser.
-    
-    It will go though each one of the html tags, searching for known patterns and filling the object lattes page
-    with its info
 
-    Parameters
-    ----------
-    output: Any
-        A variable to be overrided with the output from iso8859 to utf
-    enconding: String
-        Which enconding to use. eg: utf, iso-8859-1, etc
-    
-    Returns
-    -------
-    None
-    """
+    def __init__(self, output, encoding):
+        """This is the class that starts the HTML page parser.
+        
+        It will go though each one of the html tags, searching for known patterns and filling the object lattes page
+        with its info
+
+        Parameters
+        ----------
+        output: Any
+            A variable to be overrided with the output from iso8859 to utf
+        enconding: String
+            Which enconding to use. eg: utf, iso-8859-1, etc
+        
+        Returns
+        -------
+        None
+        """
         self.encoding = encoding
         self.output = output
 
     def write(self, text):
-        """
-            Try enconding the text in iso 8859 (lattes default) instead of utf8
+        """Try enconding the text in iso 8859 (lattes default) instead of utf8
     
         It will go though each one of the html tags, searching for known patterns and filling the object lattes page
         with its info
@@ -77,7 +77,8 @@ class OutputStream:
         -------
         None
             It overrides class output 
-        """"
+        """
+
         try:
             text = text.decode(self.encoding)
         except:
@@ -265,6 +266,7 @@ def all_the_files_in_directory(dir_path):
     files_names = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
     return files_names
 
+
 def find_non_lattes_pages(dir_path, list_of_files):
     """Returns a list of all the files on a given directory that are note lattes page
 
@@ -287,5 +289,3 @@ def find_non_lattes_pages(dir_path, list_of_files):
                 not_lattes_pages.append(lattes_page)
 
     return not_lattes_pages
-
-

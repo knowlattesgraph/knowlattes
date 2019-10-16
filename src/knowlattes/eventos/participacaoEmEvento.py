@@ -29,15 +29,16 @@ from knowlattes.util import similaridade_entre_cadeias
 
 
 class ParticipacaoEmEvento:
-    """
-        Class of events participation
-    @attributes
+    """Class of events participation
+    
+    Attributes
+    ----------
         item = None  # dado bruto
         idMembro = []
-
         ano = None
         chave = None
     """
+
     item = None  # dado bruto
     idMembro = []
 

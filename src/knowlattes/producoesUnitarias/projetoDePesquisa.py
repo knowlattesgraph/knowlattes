@@ -32,7 +32,7 @@ from knowlattes.util import similaridade_entre_cadeias
 
 class ProjetoDePesquisa:
     """ Missing
-    
+
     Attributes
     ----------
     idMembro = None
@@ -42,7 +42,6 @@ class ProjetoDePesquisa:
     descricao = ""
     chave = None
     ano = None
-
     """
 
     def __init__(self, idMembro, partesDoItem):

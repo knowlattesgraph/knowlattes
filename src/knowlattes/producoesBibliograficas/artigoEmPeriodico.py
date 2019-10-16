@@ -53,6 +53,7 @@ class ArtigoEmPeriodico:
     # issn = None
 
     """
+
     item = None  # dado bruto
     idMembro = None
     # qualis = None

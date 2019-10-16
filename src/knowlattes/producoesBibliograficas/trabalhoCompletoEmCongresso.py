@@ -49,6 +49,7 @@ class TrabalhoCompletoEmCongresso:
     sigla = None  # Qualis
 
     """
+
     item = None  # dado bruto
     idMembro = None
     qualis = None
