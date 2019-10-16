@@ -17,11 +17,11 @@ def read(fname):
 core_deps = requirements_from_pip()
 
 setup(
-    name='kownlattes',
-    version="0.0.0",
+    name='knowlattes',
+    version="0.0.1",
     author="Henrique & Thiago",
     author_email="henrique.facioli & tdsfarias [at] gmail [dot] com",
-    description=("kkk"),
+    description=("Knowlattes graph to run"),
     license="GLP3",
     keywords=".",
     url="http://github.com/knowlattes/knowlattes",

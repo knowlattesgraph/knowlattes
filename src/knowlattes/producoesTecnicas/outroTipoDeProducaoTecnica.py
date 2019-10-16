@@ -30,6 +30,20 @@ import re
 
 
 class OutroTipoDeProducaoTecnica:
+    """ Another Production Type
+
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = None
+    relevante = None
+    autores = None
+    titulo = None
+    ano = None
+    natureza = None  # tipo de producao
+    chave = None
+
+    """
     item = None  # dado bruto
     idMembro = None
 
@@ -41,6 +55,18 @@ class OutroTipoDeProducaoTecnica:
     chave = None
 
     def __init__(self, idMembro, partesDoItem, relevante):
+        """ Missing
+        
+        Parameters
+        ----------
+        idMembro
+        partesDoItem
+        relevante
+
+        Returns
+        -------
+            THe object if equal, otherwise, None
+        """
         # partesDoItem[0]: Numero (NAO USADO)
         # partesDoItem[1]: Descricao
         self.idMembro = set([])

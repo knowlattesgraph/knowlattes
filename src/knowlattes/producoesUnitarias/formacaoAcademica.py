@@ -26,6 +26,17 @@ import re
 
 
 class FormacaoAcademica:
+    """ Missing
+    
+    Attributes
+    ----------
+    anoInicio = None
+    anoConclusao = None
+    tipo = ""
+    nomeInstituicao = ""
+    descricao = ""
+
+    """
     anoInicio = None
     anoConclusao = None
     tipo = ""

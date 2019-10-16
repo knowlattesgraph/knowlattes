@@ -30,6 +30,20 @@ import re
 
 
 class ProcessoOuTecnica:
+     """ Another Production Type
+
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = None
+    relevante = None
+    autores = None
+    titulo = None
+    ano = None
+    natureza = None  # tipo de producao
+    chave = None
+
+    """
     item = None  # dado bruto
     idMembro = None
 

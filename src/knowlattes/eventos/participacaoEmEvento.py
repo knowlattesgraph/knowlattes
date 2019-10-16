@@ -66,6 +66,15 @@ class ParticipacaoEmEvento:
             self.ano = ""
 
     def compararCom(self, objeto):
+        """ Missing
+        
+        Parameters
+        ----------
+
+        Returns
+        -------
+            THe object if equal, otherwise, None
+        """
         if self.idMembro.isdisjoint(objeto.idMembro) and similaridade_entre_cadeias(self.item, objeto.item):
             # Os IDs dos membros são agrupados.
             # Essa parte é importante para a criação do GRAFO de colaborações

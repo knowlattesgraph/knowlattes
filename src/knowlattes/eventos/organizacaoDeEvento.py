@@ -29,18 +29,19 @@ from knowlattes.util import similaridade_entre_cadeias
 
 
 class OrganizacaoDeEvento:
-    """
-        Class of events organization
-    @attributes
-        item = None  # dado bruto
-        idMembro = []
+    """Class of events organization
 
-        autores = None
-        nomeDoEvento = None
-        natureza = None
-        ano = None
-        chave = None
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = []
+    autores = None
+    nomeDoEvento = None
+    natureza = None
+    ano = None
+    chave = None
     """
+
     item = None  # dado bruto
     idMembro = []
 
@@ -90,6 +91,15 @@ class OrganizacaoDeEvento:
             self.ano = ""
 
     def compararCom(self, objeto):
+        """ Missing
+        
+        Parameters
+        ----------
+
+        Returns
+        -------
+            THe object if equal, otherwise, None
+        """
         if self.idMembro.isdisjoint(objeto.idMembro) and similaridade_entre_cadeias(
             self.nomeDoEvento, objeto.nomeDoEvento
         ):

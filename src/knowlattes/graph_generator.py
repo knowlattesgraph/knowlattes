@@ -172,29 +172,6 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
         add_triple((URIRef(nome_md5), schema.editor, Literal(editora)))
         add_triple((URIRef(nome_md5), schema.pagination, Literal(paginas)))
 
-
-def all_the_files_in_directory(dir_path):
-    """
-        Returns a list of all the files on a given directory
-    """
-    from os import listdir
-    from os.path import isfile, join
-
-    files_names = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
-    return files_names
-
-def find_non_lattes_pages(dir_path, list_of_files):
-    """
-        Given the dir and the list of files, return the list on non lattes page
-    """
-    not_lattes_pages = []
-    for lattes_page in list_of_files:
-        with open(dir_path + lattes_page, encoding="iso-8859-1") as f:
-            if "possivel baixar" in f.read():
-                not_lattes_pages.append(lattes_page)
-
-    return not_lattes_pages
-
 def generate_graph():
     """Main function that, will parse all the cache folder and will generate a graph with all its content
 

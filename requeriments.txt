@@ -1,21 +1,25 @@
+# Essentials
 pytidylib==0.3.2
 Tidy
 rdflib==4.2.2
 owlready2==0.21
 Ontospy
 graphviz
-tqdm
+tqdm==4.36.1
 mechanize==0.4.3
-python-Levenshtein
+python-Levenshtein==0.12.0
+
+# Formating
+black
 
 # Optinal but Good to have
-ipywidgets
-recommonmark
-sphinx
-mkdocs
-autodoc
-nbsphinx
+ipywidgets==7.5.1
+ipython==7.8.0
+recommonmark==0.6.0
+Sphinx==2.2.0
+autodoc==0.5.0
+nbsphinx==0.4.3
 sphinx-rtd-theme
-sphinxcontrib-napoleon
+sphinxcontrib-napoleon==0.7
 Pillow==6.2.0
 simplejson==3.16.0
