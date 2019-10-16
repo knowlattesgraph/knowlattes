@@ -109,3 +109,7 @@ texinfo_documents = [
         "Miscellaneous",
     )
 ]
+
+
+## autodoc
+autodoc_mock_imports = ["knowlattes"]
