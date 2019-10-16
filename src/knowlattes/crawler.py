@@ -6,9 +6,6 @@
 import sys, os
 import codecs
 
-from knowlattes.baixa_lattes import baixaCVLattes
-from knowlattes.parser_lattes import ParserLattes
-
 DIRETORIO_CACHE = "./cache"
 ID_FILE_TYPE = ".html"
 NUMBER_OF_FILES_TO_CRAWL = 50000
@@ -60,7 +57,10 @@ def baixa_lattes(id_membro, debug=False):
         return the object of lattes
 
     """
-    cvPath = DIRETORIO_CACHE + "/" + idMembro + ID_FILE_TYPE
+    from knowlattes.baixa_lattes import baixaCVLattes
+    from knowlattes.parser_lattes import ParserLattes
+
+    cvPath = DIRETORIO_CACHE + "/" + id_membro + ID_FILE_TYPE
 
     # Checking if already cached
     if not os.path.exists(cvPath):
@@ -80,7 +80,7 @@ def baixa_lattes(id_membro, debug=False):
         file = open(cvPath, "r", encoding="ISO-8859-1")
         cvLattesHTML = file.read()
 
-    lattes_page = ParserLattes(idMembro, cvLattesHTML)
+    lattes_page = ParserLattes(id_membro, cvLattesHTML)
 
     return lattes_page
 
