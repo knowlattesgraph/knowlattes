@@ -112,4 +112,4 @@ texinfo_documents = [
 
 
 ## autodoc
-autodoc_mock_imports = ["knowlattes"]
+# autodoc_mock_imports = ["knowlattes"]
