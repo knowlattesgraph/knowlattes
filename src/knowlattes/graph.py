@@ -182,9 +182,10 @@ def generate_graph():
     -------
 
     """
-    from tqdm import tqdm
     import os
+    import sys
     import re
+    from tqdm import tqdm
 
     from knowlattes.util import find_non_lattes_pages, all_the_files_in_directory
     from knowlattes.parser_lattes import ParserLattes
@@ -195,27 +196,27 @@ def generate_graph():
 
     registerplugins()
 
-    ## This is our ontology
+    # This is our ontology
     schema = Namespace("http://schema.org/version/latest/schema.nt#")
 
-    ### Create the Graph ###
+    # Create the Graph ###
     SQLALCHEMY_URL = "sqlite:///%(here)s/database.sqlite" % {"here": os.getcwd()}
     print(f"Creating the file to output: {SQLALCHEMY_URL}")
     store = plugin.get("SQLAlchemy", Store)()
-    
     graph = Graph(store)
     graph.open(SQLALCHEMY_URL, create=True)
 
-
-    ### Get the lattes list
+    # Get the lattes list
     base_path = sys.argv[1]
     lattes_profile_list = all_the_files_in_directory(base_path)
+    non_lattes_page = find_non_lattes_pages(lattes_profile_list)
 
+    lattes_pages = [i for i in lattes_profile_list if i not in non_lattes_page]
 
-    for lattes_page in tqdm(lattes_profile_list):
-        lattes_id = re.sub('.html', '', lattes_page)
+    for lattes_page in tqdm(lattes_pages):
+        lattes_id = re.sub(".html", "", lattes_page)
 
-        file = open(base_path + lattes_page, 'r',  encoding="ISO-8859-1")
+        file = open(base_path + lattes_page, "r", encoding="ISO-8859-1")
         lattes_file = file.read()
         file.close()
 
@@ -225,18 +226,23 @@ def generate_graph():
 
 
 def load_grah():
-    from rdflib import Graph, Namespace, plugin
+    import os
+    from rdflib import Graph, plugin
     from rdflib.store import Store
     from rdflib_sqlalchemy import registerplugins
 
-    schema = Namespace("http://schema.org/version/latest/schema.nt#")
+    registerplugins()
 
-    ### Create the Graph ###
+    # Create the Graph
     SQLALCHEMY_URL = "sqlite:///%(here)s/database.sqlite" % {"here": os.getcwd()}
     print(f"Creating the file to output: {SQLALCHEMY_URL}")
     store = plugin.get("SQLAlchemy", Store)()
-    
+
     graph = Graph(store)
     graph.open(SQLALCHEMY_URL, create=False)
 
     return graph
+
+
+if __name__ == "__main__":
+    generate_graph()
