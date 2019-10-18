@@ -1,6 +1,6 @@
 # Essentials
 pytidylib==0.3.2
-Tidy
+Tidy==2018.5
 rdflib==4.2.2
 owlready2==0.21
 Ontospy
@@ -8,10 +8,11 @@ graphviz
 tqdm==4.36.1
 mechanize==0.4.3
 python-Levenshtein==0.12.0
-Flask
+Flask==1.1.1
+rdflib-sqlalchemy==0.3.8
 
 # Formating
-black
+black==19.3b0
 
 # Optinal but Good to have
 ipywidgets==7.5.1
