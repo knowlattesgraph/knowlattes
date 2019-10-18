@@ -8,6 +8,7 @@ graphviz
 tqdm==4.36.1
 mechanize==0.4.3
 python-Levenshtein==0.12.0
+Flask
 
 # Formating
 black
