@@ -1,22 +1,3 @@
-body {
-    width: 100%;
-    height: 100%;
-}
-html {
-    width: 100%;
-    height: 100%;
-}
-@media(min-width:767px) {
-    .navbar {
-        padding: 20px 0;
-        -webkit-transition: background .5s ease-in-out,padding .5s ease-in-out;
-        -moz-transition: background .5s ease-in-out,padding .5s ease-in-out;
-        transition: background .5s ease-in-out,padding .5s ease-in-out;
-    }
-    .top-nav-collapse {
-        padding: 0;
-    }
-}
 #back2Top {
     width: 40px;
     line-height: 40px;
@@ -42,18 +23,7 @@ html {
     background-color: #DDD;
     color: #DDD;
 }
-.welcome-section {
-    height: 100%;
-    padding-top: 150px;
-    text-align: center;
-    background: #AAA;
-}
-.about-section {
-    height: 100%;
-    padding-top: 150px;
-    text-align: center;
-    background: #DDD;
-}
+
 .whatwedo-section {
     height: 100%;
     padding-top: 150px;
