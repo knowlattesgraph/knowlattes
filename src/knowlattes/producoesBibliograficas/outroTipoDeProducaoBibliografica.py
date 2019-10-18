@@ -29,6 +29,21 @@ from knowlattes.util import similaridade_entre_cadeias
 
 
 class OutroTipoDeProducaoBibliografica:
+    """ Missing
+    
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = None
+    relevante = None
+    autores = None
+    titulo = None
+    ano = None
+    natureza = None  # tipo de producao
+    chave = None
+
+    """
+
     item = None  # dado bruto
     idMembro = None
 

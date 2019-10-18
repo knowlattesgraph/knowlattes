@@ -28,6 +28,28 @@ from knowlattes.util import similaridade_entre_cadeias
 
 
 class TrabalhoCompletoEmCongresso:
+    """ Missing
+    
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = None
+    qualis = None
+    qualissimilar = None
+    doi = None
+    relevante = None
+    autores = None
+    titulo = None
+    nomeDoEvento = None
+    ###	tituloDosAnais = None
+    ano = None
+    volume = None
+    paginas = None
+    chave = None
+    sigla = None  # Qualis
+
+    """
+
     item = None  # dado bruto
     idMembro = None
     qualis = None

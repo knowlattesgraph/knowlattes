@@ -1,4 +1,3 @@
-
 def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
     """Given a lattes page object, adds all the possible triples on graph
 
@@ -173,28 +172,6 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
         add_triple((URIRef(nome_md5), schema.pagination, Literal(paginas)))
 
 
-def all_the_files_in_directory(dir_path):
-    """
-        Returns a list of all the files on a given directory
-    """
-    from os import listdir
-    from os.path import isfile, join
-
-    files_names = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
-    return files_names
-
-def find_non_lattes_pages(dir_path, list_of_files):
-    """
-        Given the dir and the list of files, return the list on non lattes page
-    """
-    not_lattes_pages = []
-    for lattes_page in list_of_files:
-        with open(dir_path + lattes_page, encoding="iso-8859-1") as f:
-            if "possivel baixar" in f.read():
-                not_lattes_pages.append(lattes_page)
-
-    return not_lattes_pages
-
 def generate_graph():
     """Main function that, will parse all the cache folder and will generate a graph with all its content
 
@@ -205,31 +182,61 @@ def generate_graph():
     -------
 
     """
+    from tqdm import tqdm
+    import os
+    import re
+
+    from knowlattes.util import find_non_lattes_pages, all_the_files_in_directory
+    from knowlattes.parser_lattes import ParserLattes
 
     from rdflib import Graph, Namespace, plugin
     from rdflib.store import Store
     from rdflib_sqlalchemy import registerplugins
-    import os
 
     registerplugins()
 
     ## This is our ontology
     schema = Namespace("http://schema.org/version/latest/schema.nt#")
 
-    SQLALCHEMY_URL = "sqlite:///%(here)s/development.sqlite" % {"here": os.getcwd()}
+    ### Create the Graph ###
+    SQLALCHEMY_URL = "sqlite:///%(here)s/database.sqlite" % {"here": os.getcwd()}
     print(f"Creating the file to output: {SQLALCHEMY_URL}")
     store = plugin.get("SQLAlchemy", Store)()
-
+    
     graph = Graph(store)
     graph.open(SQLALCHEMY_URL, create=True)
 
-    # for lattes_page in tqdm_notebook(lattes_profile_list):
-    #     lattes_id = re.sub('.html', '', lattes_page)
-    
-    #     file = open(basePath+lattes_page, 'r',  encoding="ISO-8859-1")
-    #     lattes_file = file.read()
-    #     file.close()
 
-    #     lattes_page = ParserLattes(lattes_id, lattes_file)
-        
-    #     add_lattes_reasercher_to_graph(new_graph, lattes_page, schema)
+    ### Get the lattes list
+    base_path = sys.argv[1]
+    lattes_profile_list = all_the_files_in_directory(base_path)
+
+
+    for lattes_page in tqdm(lattes_profile_list):
+        lattes_id = re.sub('.html', '', lattes_page)
+
+        file = open(base_path + lattes_page, 'r',  encoding="ISO-8859-1")
+        lattes_file = file.read()
+        file.close()
+
+        lattes_page = ParserLattes(lattes_id, lattes_file)
+
+        add_lattes_reasercher_to_graph(graph, lattes_page, schema)
+
+
+def load_grah():
+    from rdflib import Graph, Namespace, plugin
+    from rdflib.store import Store
+    from rdflib_sqlalchemy import registerplugins
+
+    schema = Namespace("http://schema.org/version/latest/schema.nt#")
+
+    ### Create the Graph ###
+    SQLALCHEMY_URL = "sqlite:///%(here)s/database.sqlite" % {"here": os.getcwd()}
+    print(f"Creating the file to output: {SQLALCHEMY_URL}")
+    store = plugin.get("SQLAlchemy", Store)()
+    
+    graph = Graph(store)
+    graph.open(SQLALCHEMY_URL, create=False)
+
+    return graph

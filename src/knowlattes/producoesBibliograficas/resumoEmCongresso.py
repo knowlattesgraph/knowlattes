@@ -27,6 +27,25 @@ from knowlattes.util import similaridade_entre_cadeias
 
 
 class ResumoEmCongresso:
+    """ Missing
+    
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = None
+    doi = None
+    relevante = None
+    autores = None
+    titulo = None
+    nomeDoEvento = None
+    ano = None
+    volume = None
+    numero = None
+    paginas = None
+    chave = None
+
+    """
+
     item = None  # dado bruto
     idMembro = None
 

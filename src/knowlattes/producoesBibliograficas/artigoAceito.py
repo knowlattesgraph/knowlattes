@@ -28,6 +28,28 @@ from knowlattes.util import similaridade_entre_cadeias
 
 
 class ArtigoAceito:
+    """ Missing
+    
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = None
+    qualis = None
+    qualissimilar = None
+    issn = ""
+    doi = None
+    relevante = None
+    autores = None
+    titulo = None
+    revista = None
+    paginas = None
+    volume = None
+    numero = None
+    ano = None
+    chave = None
+
+    """
+
     item = None  # dado bruto
     idMembro = None
     qualis = None

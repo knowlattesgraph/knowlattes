@@ -29,6 +29,24 @@ from knowlattes.util import similaridade_entre_cadeias
 
 
 class LivroPublicado:
+    """ Missing
+    
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = None
+    relevante = None
+    autores = None
+    titulo = None
+    edicao = None
+    ano = None
+    volume = None
+    paginas = None
+    editora = None
+    chave = None
+
+    """
+
     item = None  # dado bruto
     idMembro = None
 

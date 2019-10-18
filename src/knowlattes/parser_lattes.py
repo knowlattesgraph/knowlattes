@@ -658,7 +658,9 @@ class ParserLattes(HTMLParser):
                                 self.relevante = 0
 
                             if self.achouCapituloDeLivroPublicado:
-                                iessimoItem = CapituloDeLivroPublicado(self.id_membro, self.partesDoItem, self.relevante)
+                                iessimoItem = CapituloDeLivroPublicado(
+                                    self.id_membro, self.partesDoItem, self.relevante
+                                )
                                 self.listaCapituloDeLivroPublicado.append(iessimoItem)
                                 self.relevante = 0
 

@@ -1,0 +1,6 @@
+textarea {
+    font-size: 1em;
+    font-weight: bold;
+    font-family: lucida console, monospace;
+    border: 1px solid black;
+}

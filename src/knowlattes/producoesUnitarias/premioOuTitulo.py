@@ -27,11 +27,16 @@ import re
 
 
 class PremioOuTitulo:
+    """ Missing
+    
+    Attributes
+    ----------
     idMembro = None
-
     ano = ""
     descricao = ""
     chave = None
+
+    """
 
     def __init__(self, idMembro, partesDoItem):
         # partesDoItem[0]: Ano

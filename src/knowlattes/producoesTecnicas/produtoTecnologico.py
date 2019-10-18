@@ -30,6 +30,19 @@ import re
 
 
 class ProdutoTecnologico:
+    """ Missing
+    
+    Attributes
+    ----------
+    idMembro = None
+    relevante = None
+    autores = None
+    titulo = None
+    ano = None
+    chave = None
+
+    """
+
     item = None  # dado bruto
     idMembro = None
 

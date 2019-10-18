@@ -34,15 +34,51 @@ ABSBASE = os.path.abspath(".") + SEP
 class OutputStream:
     """
     Pylattes utils class for parsing and reading html pages
+
+    Parameters
+    ----------
+    
+    Returns
+    -------
+    
     """
+
     def __init__(self, output, encoding):
+        """This is the class that starts the HTML page parser.
+        
+        It will go though each one of the html tags, searching for known patterns and filling the object lattes page
+        with its info
+
+        Parameters
+        ----------
+        output: Any
+            A variable to be overrided with the output from iso8859 to utf
+        enconding: String
+            Which enconding to use. eg: utf, iso-8859-1, etc
+        
+        Returns
+        -------
+        None
+        """
         self.encoding = encoding
         self.output = output
 
     def write(self, text):
+        """Try enconding the text in iso 8859 (lattes default) instead of utf8
+    
+        It will go though each one of the html tags, searching for known patterns and filling the object lattes page
+        with its info
+
+        Parameters
+        ----------
+        text: String
+
+        Returns
+        -------
+        None
+            It overrides class output 
         """
-            Try enconding the text in iso 8859 (lattes default) instead of utf8
-        """
+
         try:
             text = text.decode(self.encoding)
         except:
@@ -133,12 +169,19 @@ def copiarArquivos(dir):
 
 # ---------------------------------------------------------------------------- #
 def similaridade_entre_cadeias(str1, str2, qualis=False):
-    """
-    Compara duas cadeias de caracteres e retorna a medida de similaridade entre elas, entre 0 e 1, onde 1 significa que as cadeias são idênticas ou uma é contida na outra.
-    :param str1:
-    :param str2:
-    :param qualis:
-    :return: A medida de similaridade entre as cadeias, de 0 a 1.
+    """Compara duas cadeias de caracteres e retorna a medida de similaridade entre elas, entre 0 e 1, onde 1 significa que as cadeias são idênticas ou uma é contida na outra.
+
+    Parameters
+    ----------
+    str1: String
+        First string to be compared
+    str2: String
+        Second string to be compared
+    qualis: Bool
+
+    Returns
+    -------
+        A medida de similaridade entre as cadeias, de 0 a 1.
     """
     str1 = str1.strip().lower()
     str2 = str2.strip().lower()
@@ -166,8 +209,15 @@ def similaridade_entre_cadeias(str1, str2, qualis=False):
 
 
 def criarDiretorio(dir):
-    """
-        Create a directory if it doesn't exist
+    """Create a directory if it doesn't exist
+
+    Parameters
+    ----------
+    dir:
+        Path to the directory to be created
+    Returns
+    -------
+    
     """
     if not os.path.exists(dir):
         try:
@@ -180,8 +230,62 @@ def criarDiretorio(dir):
     return 1
 
 
-# Combining Dictionaries Of Lists
 def merge_dols(dol1, dol2):
+    """Combining Dictionaries Of Lists
+
+    Parameters
+    ----------
+    dol1:
+        dic of list1
+    dol2:
+        dic of list2
+    Returns
+    -------
+        Combined dict of both dict1 and dict2
+    """
     result = dict(dol1, **dol2)
     result.update((k, dol1[k] + dol2[k]) for k in set(dol1).intersection(dol2))
     return result
+
+
+def all_the_files_in_directory(dir_path):
+    """Returns a list of all the files on a given directory
+
+    Parameters
+    ----------
+    dir_path:
+        directory to list all the files
+
+    Returns
+    -------
+        List of files inside the directory
+    """
+    from os import listdir
+    from os.path import isfile, join
+
+    files_names = [f for f in listdir(dir_path) if isfile(join(dir_path, f))]
+    return files_names
+
+
+def find_non_lattes_pages(dir_path, list_of_files):
+    """Returns a list of all the files on a given directory that are note lattes page
+
+    Parameters
+    ----------
+    dir_path:
+        directory to list all the files
+
+    list_of_files
+        list of all files to check whether is a lattes cv
+
+    Returns
+    -------
+        List of files inside the directory that are not lattes
+    """
+    not_lattes_pages = []
+    for lattes_page in list_of_files:
+        with open(dir_path + lattes_page, encoding="iso-8859-1") as f:
+            if "possivel baixar" in f.read():
+                not_lattes_pages.append(lattes_page)
+
+    return not_lattes_pages

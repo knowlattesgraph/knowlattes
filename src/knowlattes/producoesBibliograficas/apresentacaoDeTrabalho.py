@@ -28,6 +28,21 @@ from knowlattes.util import similaridade_entre_cadeias
 
 
 class ApresentacaoDeTrabalho:
+    """ Missing
+    
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = None
+    relevante = None
+    autores = None
+    titulo = None
+    ano = None
+    natureza = None  # tipo de apresentacao
+    chave = None
+
+    """
+
     item = None  # dado bruto
     idMembro = None
 

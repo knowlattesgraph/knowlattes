@@ -27,6 +27,16 @@ import re
 
 
 class Idioma:
+    """ Missing
+    
+    Attributes
+    ----------
+    descricao = ""
+    nome = ""
+    proficiencia = ""
+
+    """
+
     descricao = ""
     nome = ""
     proficiencia = ""

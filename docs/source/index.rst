@@ -1,22 +1,23 @@
-=======
+=================
 knowlattes_graph
-=======
-
-**knowlattes_graph**
-
-**knowlattes_graph Principles**
+=================
 
 #. Blablabla
 #. Blablabla
 #. Blablabla
 #. Blablabla
-
-Contents
-========
 
 .. toctree::
    :maxdepth: 2
+   :caption: Contents:
 
    getting_started
    example
    api/modules
+
+
+Indices and tables
+==================
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`

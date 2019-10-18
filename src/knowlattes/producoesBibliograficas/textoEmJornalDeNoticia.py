@@ -29,6 +29,24 @@ from knowlattes.util import similaridade_entre_cadeias
 
 
 class TextoEmJornalDeNoticia:
+    """ Missing
+    
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = None
+    ano = None
+    relevante = None
+    autores = None
+    titulo = None
+    nomeJornal = None
+    data = None
+    volume = None
+    paginas = None
+    chave = None
+
+    """
+
     item = None  # dado bruto
     idMembro = None
     ano = None

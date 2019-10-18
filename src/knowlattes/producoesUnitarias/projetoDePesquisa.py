@@ -31,6 +31,10 @@ from knowlattes.util import similaridade_entre_cadeias
 
 
 class ProjetoDePesquisa:
+    """ Missing
+
+    Attributes
+    ----------
     idMembro = None
     anoInicio = None
     anoConclusao = None
@@ -38,6 +42,7 @@ class ProjetoDePesquisa:
     descricao = ""
     chave = None
     ano = None
+    """
 
     def __init__(self, idMembro, partesDoItem):
         # partesDoItem[0]: Periodo do projeto de pesquisa

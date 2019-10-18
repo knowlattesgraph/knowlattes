@@ -26,6 +26,14 @@ import re
 
 
 class AreaDeAtuacao:
+    """ Missing
+    
+    Attributes
+    ----------
+    descricao = ""
+
+    """
+
     descricao = ""
 
     def __init__(self, partesDoItem):

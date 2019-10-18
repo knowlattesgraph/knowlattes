@@ -30,6 +30,30 @@ from knowlattes.util import similaridade_entre_cadeias
 
 
 class ArtigoEmPeriodico:
+    """ Missing
+    
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = None
+    # qualis = None
+    # qualissimilar = None
+
+    # doi = None
+    # relevante = None
+    # autores = None
+    # titulo = None
+    # revista = None
+    # volume = None
+    # paginas = None
+    # numero = None
+    # ano = None
+    resto = None
+    chave = None
+    # issn = None
+
+    """
+
     item = None  # dado bruto
     idMembro = None
     # qualis = None

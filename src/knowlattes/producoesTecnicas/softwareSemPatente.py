@@ -30,6 +30,20 @@ import re
 
 
 class SoftwareSemPatente:
+    """ Missing
+    
+    Attributes
+    ----------
+    item = None  # dado bruto
+    idMembro = None
+    relevante = None
+    autores = None
+    titulo = None
+    ano = None
+    chave = None
+
+    """
+
     item = None  # dado bruto
     idMembro = None
 
