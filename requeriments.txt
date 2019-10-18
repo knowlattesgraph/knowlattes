@@ -13,6 +13,7 @@ rdflib-sqlalchemy==0.3.8
 
 # Formating
 black==19.3b0
+flake8==3.7.8
 
 # Optinal but Good to have
 ipywidgets==7.5.1
