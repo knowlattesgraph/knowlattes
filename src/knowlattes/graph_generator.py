@@ -182,31 +182,61 @@ def generate_graph():
     -------
 
     """
+    from tqdm import tqdm
+    import os
+    import re
+
+    from knowlattes.util import find_non_lattes_pages, all_the_files_in_directory
+    from knowlattes.parser_lattes import ParserLattes
 
     from rdflib import Graph, Namespace, plugin
     from rdflib.store import Store
     from rdflib_sqlalchemy import registerplugins
-    import os
 
     registerplugins()
 
     ## This is our ontology
     schema = Namespace("http://schema.org/version/latest/schema.nt#")
 
-    SQLALCHEMY_URL = "sqlite:///%(here)s/development.sqlite" % {"here": os.getcwd()}
+    ### Create the Graph ###
+    SQLALCHEMY_URL = "sqlite:///%(here)s/database.sqlite" % {"here": os.getcwd()}
     print(f"Creating the file to output: {SQLALCHEMY_URL}")
     store = plugin.get("SQLAlchemy", Store)()
-
+    
     graph = Graph(store)
     graph.open(SQLALCHEMY_URL, create=True)
 
-    # for lattes_page in tqdm_notebook(lattes_profile_list):
-    #     lattes_id = re.sub('.html', '', lattes_page)
 
-    #     file = open(basePath+lattes_page, 'r',  encoding="ISO-8859-1")
-    #     lattes_file = file.read()
-    #     file.close()
+    ### Get the lattes list
+    base_path = sys.argv[1]
+    lattes_profile_list = all_the_files_in_directory(base_path)
 
-    #     lattes_page = ParserLattes(lattes_id, lattes_file)
 
-    #     add_lattes_reasercher_to_graph(new_graph, lattes_page, schema)
+    for lattes_page in tqdm(lattes_profile_list):
+        lattes_id = re.sub('.html', '', lattes_page)
+
+        file = open(base_path + lattes_page, 'r',  encoding="ISO-8859-1")
+        lattes_file = file.read()
+        file.close()
+
+        lattes_page = ParserLattes(lattes_id, lattes_file)
+
+        add_lattes_reasercher_to_graph(graph, lattes_page, schema)
+
+
+def load_grah():
+    from rdflib import Graph, Namespace, plugin
+    from rdflib.store import Store
+    from rdflib_sqlalchemy import registerplugins
+
+    schema = Namespace("http://schema.org/version/latest/schema.nt#")
+
+    ### Create the Graph ###
+    SQLALCHEMY_URL = "sqlite:///%(here)s/database.sqlite" % {"here": os.getcwd()}
+    print(f"Creating the file to output: {SQLALCHEMY_URL}")
+    store = plugin.get("SQLAlchemy", Store)()
+    
+    graph = Graph(store)
+    graph.open(SQLALCHEMY_URL, create=False)
+
+    return graph
