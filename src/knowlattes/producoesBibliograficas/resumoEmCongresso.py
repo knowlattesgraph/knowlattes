@@ -32,7 +32,7 @@ class ResumoEmCongresso:
     Attributes
     ----------
     item = None  # dado bruto
-    idMembro = None
+    id_membro = None
     doi = None
     relevante = None
     autores = None
@@ -47,7 +47,7 @@ class ResumoEmCongresso:
     """
 
     item = None  # dado bruto
-    idMembro = None
+    id_membro = None
 
     doi = None
     relevante = None
@@ -60,9 +60,9 @@ class ResumoEmCongresso:
     paginas = None
     chave = None
 
-    def __init__(self, idMembro, partesDoItem="", doi="", relevante=""):
-        self.idMembro = set([])
-        self.idMembro.add(idMembro)
+    def __init__(self, id_membro, partesDoItem="", doi="", relevante=""):
+        self.id_membro = set([])
+        self.id_membro.add(id_membro)
 
         if not partesDoItem == "":
             # partesDoItem[0]: Numero (NAO USADO)
@@ -157,10 +157,10 @@ class ResumoEmCongresso:
             self.paginas = ""
 
     def compararCom(self, objeto):
-        if self.idMembro.isdisjoint(objeto.idMembro) and similaridade_entre_cadeias(self.titulo, objeto.titulo):
+        if self.id_membro.isdisjoint(objeto.id_membro) and similaridade_entre_cadeias(self.titulo, objeto.titulo):
             # Os IDs dos membros são agrupados.
             # Essa parte é importante para a criação do GRAFO de colaborações
-            self.idMembro.update(objeto.idMembro)
+            self.id_membro.update(objeto.id_membro)
 
             if len(self.doi) < len(objeto.doi):
                 self.doi = objeto.doi
@@ -228,7 +228,7 @@ class ResumoEmCongresso:
     # ------------------------------------------------------------------------ #
     def __str__(self):
         s = "\n[RESUMO EM CONGRESSO] \n"
-        s += "+ID-MEMBRO   : " + str(self.idMembro) + "\n"
+        s += "+ID-MEMBRO   : " + str(self.id_membro) + "\n"
         s += "+RELEVANTE   : " + str(self.relevante) + "\n"
         s += "+DOI         : " + self.doi.encode("utf8", "replace") + "\n"
         s += "+AUTORES     : " + self.autores.encode("utf8", "replace") + "\n"

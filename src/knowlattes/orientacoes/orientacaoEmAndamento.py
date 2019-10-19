@@ -30,8 +30,8 @@ from knowlattes.util import similaridade_entre_cadeias
 
 class OrientacaoEmAndamento:
     item = None  # dado bruto
-    idMembro = []
-    idOrientando = ""
+    id_membro = []
+    id_orientando = ""
 
     nome = None
     tituloDoTrabalho = None
@@ -41,14 +41,14 @@ class OrientacaoEmAndamento:
     tipoDeOrientacao = None
     chave = None
 
-    def __init__(self, idMembro, partesDoItem, idOrientando):
+    def __init__(self, id_membro, partesDoItem, id_orientando):
         # partesDoItem[0]: Numero (NAO USADO)
         # partesDoItem[1]: Descricao
-        self.idMembro = set([])
-        self.idMembro.add(idMembro)
+        self.id_membro = set([])
+        self.id_membro.add(id_membro)
 
         self.item = partesDoItem[1]
-        self.idOrientando = str(idOrientando)
+        self.id_orientando = str(id_orientando)
 
         # Dividir o item na suas partes constituintes
         partes = self.item.partition(". (Orientador).")
@@ -94,10 +94,10 @@ class OrientacaoEmAndamento:
         self.chave = self.nome  # chave de comparação entre os objetos
 
     def compararCom(self, objeto):
-        if self.idMembro.isdisjoint(objeto.idMembro) and similaridade_entre_cadeias(self.nome, objeto.nome):
+        if self.id_membro.isdisjoint(objeto.id_membro) and similaridade_entre_cadeias(self.nome, objeto.nome):
             # Os IDs dos membros são agrupados.
             # Essa parte é importante para a criação do GRAFO de colaborações
-            self.idMembro.update(objeto.idMembro)
+            self.id_membro.update(objeto.id_membro)
 
             if len(self.tituloDoTrabalho) < len(objeto.tituloDoTrabalho):
                 self.tituloDoTrabalho = objeto.tituloDoTrabalho
@@ -114,8 +114,8 @@ class OrientacaoEmAndamento:
 
     def html(self, listaDeMembros):
         s = (
-            '<a href="http://lattes.cnpq.br/' + self.idOrientando + '">' + self.nome + "</a>"
-            if len(self.idOrientando) == 16
+            '<a href="http://lattes.cnpq.br/' + self.id_orientando + '">' + self.nome + "</a>"
+            if len(self.id_orientando) == 16
             else self.nome
         )
         s += ". <b>" + self.tituloDoTrabalho + "</b>. "
@@ -123,7 +123,7 @@ class OrientacaoEmAndamento:
         s += self.agenciaDeFomento + ". " if not self.agenciaDeFomento == "" else ". "
         s += "In&iacute;cio: " + str(self.ano) + "." if str(self.ano).isdigit() else "."
 
-        lista = list(self.idMembro)
+        lista = list(self.id_membro)
         if len(lista) == 1:
             m = listaDeMembros[lista[0]]
             s += (
@@ -132,14 +132,14 @@ class OrientacaoEmAndamento:
                 + ': <a href="'
                 + m.url
                 + '">'
-                + m.nomeCompleto
+                + m.nome_completo
                 + "</a>.</font></i>"
             )
         else:
             s += "<br><i><font size=-1>Orientadores: "
             for i in lista:
                 m = listaDeMembros[i]
-                s += '<a href="' + m.url + '">' + m.nomeCompleto + "</a>, "
+                s += '<a href="' + m.url + '">' + m.nome_completo + "</a>, "
             s = s.rstrip(", ") + ".</font></i>"
 
         return s
@@ -147,8 +147,8 @@ class OrientacaoEmAndamento:
     # ------------------------------------------------------------------------ #
     def __str__(self):
         s = "\n[ORIENTANDO] \n"
-        s += "+ID-ORIENTADOR: " + str(self.idMembro) + "\n"
-        s += "+ID-ALUNO     : " + self.idOrientando.encode("utf8", "replace") + "\n"
+        s += "+ID-ORIENTADOR: " + str(self.id_membro) + "\n"
+        s += "+ID-ALUNO     : " + self.id_orientando.encode("utf8", "replace") + "\n"
         s += "+NOME         : " + self.nome.encode("utf8", "replace") + "\n"
         s += "+TITULO TRAB. : " + self.tituloDoTrabalho.encode("utf8", "replace") + "\n"
         s += "+ANO INICIO   : " + str(self.ano) + "\n"

@@ -35,7 +35,7 @@ class ArtigoEmPeriodico:
     Attributes
     ----------
     item = None  # dado bruto
-    idMembro = None
+    id_membro = None
     # qualis = None
     # qualissimilar = None
 
@@ -55,7 +55,7 @@ class ArtigoEmPeriodico:
     """
 
     item = None  # dado bruto
-    idMembro = None
+    id_membro = None
     # qualis = None
     # qualissimilar = None
 
@@ -72,9 +72,9 @@ class ArtigoEmPeriodico:
     chave = None
     # issn = None
 
-    def __init__(self, idMembro, partesDoItem="", doi="", relevante="", complemento=""):
-        self.idMembro = set([])
-        self.idMembro.add(idMembro)
+    def __init__(self, id_membro, partesDoItem="", doi="", relevante="", complemento=""):
+        self.id_membro = set([])
+        self.id_membro.add(id_membro)
 
         self.doi = ""
         self.relevante = ""
@@ -182,10 +182,10 @@ class ArtigoEmPeriodico:
                 # if parametroNome=="nomePeriodico": self.revista = parametroValor
 
     def compararCom(self, objeto):
-        if self.idMembro.isdisjoint(objeto.idMembro) and similaridade_entre_cadeias(self.titulo, objeto.titulo):
+        if self.id_membro.isdisjoint(objeto.id_membro) and similaridade_entre_cadeias(self.titulo, objeto.titulo):
             # Os IDs dos membros são agrupados.
             # Essa parte é importante para a criação do GRAFO de colaborações
-            self.idMembro.update(objeto.idMembro)
+            self.id_membro.update(objeto.id_membro)
 
             if len(self.doi) < len(objeto.doi):
                 self.doi = objeto.doi
@@ -268,7 +268,7 @@ class ArtigoEmPeriodico:
         s += "\nER  - "
         return s
 
-    def csv(self, nomeCompleto=""):
+    def csv(self, nome_completo=""):
         if self.qualis == None:
             self.qualis = ""
         if self.qualissimilar == None:
@@ -276,7 +276,7 @@ class ArtigoEmPeriodico:
         s = "artigoEmPeriodico\t"
 
         # FIXME: self.qualis estava dando erro de conversão; remediado temporariamente usando str(); verificar se comportamento está correto
-        if nomeCompleto == "":  # tratamento grupal
+        if nome_completo == "":  # tratamento grupal
             s += (
                 str(self.ano)
                 + "\t"
@@ -296,7 +296,7 @@ class ArtigoEmPeriodico:
             )
         else:  # tratamento individual
             s += (
-                nomeCompleto
+                nome_completo
                 + "\t"
                 + str(self.ano)
                 + "\t"
@@ -319,7 +319,7 @@ class ArtigoEmPeriodico:
     # ------------------------------------------------------------------------ #
     def __str__(self):
         s = "\n[ARTIGO EM PERIODICO] \n"
-        s += "+ID-MEMBRO   : " + str(self.idMembro) + "\n"
+        s += "+ID-MEMBRO   : " + str(self.id_membro) + "\n"
         s += "+RELEVANTE   : " + str(self.relevante) + "\n"
         s += "+DOI         : " + self.doi.encode("utf8", "replace") + "\n"
         s += "+AUTORES     : " + self.autores.encode("utf8", "replace") + "\n"

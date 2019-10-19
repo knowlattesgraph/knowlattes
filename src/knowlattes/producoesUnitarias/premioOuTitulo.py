@@ -31,18 +31,18 @@ class PremioOuTitulo:
     
     Attributes
     ----------
-    idMembro = None
+    id_membro = None
     ano = ""
     descricao = ""
     chave = None
 
     """
 
-    def __init__(self, idMembro, partesDoItem):
+    def __init__(self, id_membro, partesDoItem):
         # partesDoItem[0]: Ano
         # partesDoItem[1]: Descricao do titulo ou premio
-        self.idMembro = set([])
-        self.idMembro.add(idMembro)
+        self.id_membro = set([])
+        self.id_membro.add(id_membro)
 
         self.ano = partesDoItem[0].strip()
         self.descricao = partesDoItem[1].strip()
@@ -55,10 +55,10 @@ class PremioOuTitulo:
         return '"' + self.ano + " " + self.descricao + " " + self.chave + '"\n'
 
     # Prêmios considerados de forma individual
-    # if self.idMembro.isdisjoint(objeto.idMembro) and similaridade_entre_cadeias(self.descricao, objeto.descricao):
+    # if self.id_membro.isdisjoint(objeto.id_membro) and similaridade_entre_cadeias(self.descricao, objeto.descricao):
     # 	# Os IDs dos membros são agrupados.
     # 	# Essa parte é importante para a criação do GRAFO de colaborações
-    # 	self.idMembro.update(objeto.idMembro)
+    # 	self.id_membro.update(objeto.id_membro)
     #
     # 	if len(self.descricao)<len(objeto.descricao):
     # 		self.descricao = objeto.descricao
@@ -71,15 +71,15 @@ class PremioOuTitulo:
         s = self.descricao + ". "
         s += str(self.ano) + "." if str(self.ano).isdigit() else "."
 
-        m = listaDeMembros[list(self.idMembro)[0]]
-        s += '<br><i><font size=-1>Membro: <a href="' + m.url + '">' + m.nomeCompleto + "</a>.</font>"
+        m = listaDeMembros[list(self.id_membro)[0]]
+        s += '<br><i><font size=-1>Membro: <a href="' + m.url + '">' + m.nome_completo + "</a>.</font>"
 
         return s
 
     # ------------------------------------------------------------------------ #
     def __str__(self):
         s = "\n[PREMIO OU TITULO] \n"
-        s += "+ID-MEMBROL  : " + str(self.idMembro) + "\n"
+        s += "+ID-MEMBROL  : " + str(self.id_membro) + "\n"
         s += "+ANO         : " + str(self.ano) + "\n"
         s += "+DESCRICAO   : " + self.descricao.encode("utf8", "replace") + "\n"
         return s

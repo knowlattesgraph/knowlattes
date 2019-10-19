@@ -35,8 +35,8 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
 
     add_triple = add_non_duplicated(graph=graph)
 
-    uri = lattes_page.idMembro
-    name = lattes_page.nomeCompleto
+    uri = lattes_page.id_membro
+    name = lattes_page.nome_completo
     first_name = name.split(" ")[0]
     family_name = " ".join(name.split(" ")[1:])
     gender = lattes_page.sexo
@@ -49,17 +49,17 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
     add_triple((researcher, schema.givenName, Literal(first_name)))
     add_triple((researcher, schema.gender, Literal(gender)))
 
-    # Check if the ID in listaIDLattesColaboradores is the same as uri (as in uri = lattes_page.idMembro)
-    for colaborador in sorted(lattes_page.listaIDLattesColaboradores):
+    # Check if the ID in lista_id_lattes_colaboradores is the same as uri (as in uri = lattes_page.id_membro)
+    for colaborador in sorted(lattes_page.lista_id_lattes_colaboradores):
         # I assume the colaborator will be added to type Person in a different iteration.
         add_triple((researcher, schema.knows, URIRef(colaborador)))
 
-    for idioma in lattes_page.listaIdioma:
+    for idioma in lattes_page.lista_idioma:
         nome_idioma = idioma.nome
         add_triple((URIRef(nome_idioma), schema.type, schema.Language))
         add_triple((researcher, schema.knowsLanguage, Literal(nome_idioma)))
 
-    for formacao_academica in lattes_page.listaFormacaoAcademica:
+    for formacao_academica in lattes_page.lista_formacao_academica:
         tipo_formacao = formacao_academica.tipo
         instituicao = formacao_academica.nomeInstituicao
         instituicao_md5 = hashlib.md5(instituicao.encode("utf-8")).hexdigest()
@@ -69,7 +69,7 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
         add_triple((researcher, schema.hasCredential, Literal(tipo_formacao)))
         add_triple((researcher, schema.alumniOf, Literal(instituicao)))
 
-    for artigo_periodico in lattes_page.listaArtigoEmPeriodico:
+    for artigo_periodico in lattes_page.lista_artigo_em_periodico:
         doi_url = artigo_periodico.doi
         # Added springer nature format (we can remove later if needed)
         doi = re.sub("http://dx.doi.org/", "", doi_url)
@@ -106,7 +106,7 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
             add_triple((URIRef(doi), schema.genre, Literal(genre)))
             add_triple((URIRef(doi), schema.sameAs, URIRef(sameAsSpriger)))
 
-    for projeto_de_pesquisa in lattes_page.listaProjetoDePesquisa:
+    for projeto_de_pesquisa in lattes_page.lista_projeto_de_pesquisa:
         ano = projeto_de_pesquisa.ano
         descricao = projeto_de_pesquisa.descricao
         nome = projeto_de_pesquisa.nome
@@ -133,7 +133,7 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
         add_triple((URIRef(nome_md5), schema.author, researcher))
         add_triple((URIRef(nome_md5), schema.genre, Literal(genre)))
 
-    for livro in lattes_page.listaLivroPublicado:
+    for livro in lattes_page.lista_livro_publicado:
         ano = livro.ano
         titulo = livro.titulo
         # We are not using 'autores' for now.
@@ -174,6 +174,8 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
 
 def generate_graph():
     """Main function that, will parse all the cache folder and will generate a graph with all its content
+        
+        Run this using python graph.py <path_to_dir_with_lattes_pages>
 
     Parameters
     ----------
@@ -189,11 +191,13 @@ def generate_graph():
 
     from knowlattes.util import find_non_lattes_pages, all_the_files_in_directory
     from knowlattes.parser_lattes import ParserLattes
+    from knowlattes.crawler import exception_handler
 
     from rdflib import Graph, Namespace, plugin
     from rdflib.store import Store
     from rdflib_sqlalchemy import registerplugins
 
+    sys.excepthook = exception_handler
     registerplugins()
 
     # This is our ontology
@@ -209,7 +213,7 @@ def generate_graph():
     # Get the lattes list
     base_path = sys.argv[1]
     lattes_profile_list = all_the_files_in_directory(base_path)
-    non_lattes_page = find_non_lattes_pages(lattes_profile_list)
+    non_lattes_page = find_non_lattes_pages(base_path, lattes_profile_list)
 
     lattes_pages = [i for i in lattes_profile_list if i not in non_lattes_page]
 
@@ -222,7 +226,7 @@ def generate_graph():
 
         lattes_page = ParserLattes(lattes_id, lattes_file)
 
-        add_lattes_reasercher_to_graph(graph, lattes_page, schema)
+        add_lattes_reasercher_to_graph(lattes_page, graph, schema)
 
 
 def load_grah():
