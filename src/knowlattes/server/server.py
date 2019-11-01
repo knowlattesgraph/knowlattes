@@ -1,4 +1,10 @@
-from flask import Flask, escape, request, url_for, render_template
+import os
+from flask import Flask, escape, request, url_for, render_template, Markup
+from rdflib import Namespace
+
+SCHEMA_DOT_ORG = Namespace("http://schema.org/version/latest/schema.nt#")
+
+val_dic = {}
 
 # https://flask.palletsprojects.com/en/1.1.x/
 app = Flask(__name__)
@@ -17,11 +23,39 @@ with app.test_request_context():
     url_for("static", filename="js/stick-menu.js")
 
 
+@app.before_first_request
+def load_knowlattes_graph():
+    from knowlattes.graph import load_grah
+
+    val_dic["graph"] = load_grah(os.getcwd())
+
+
+def render_table(matrix):
+    table = ""
+    table += "<table>"
+    for row in matrix:
+        table += "<tr>"
+        for col in row:
+            table += f"<td> {col} </td>"
+        table += "</tr>"
+    table += "</table>"
+
+    return Markup(table)
+
+
 @app.route("/", methods=["GET"])
-def hello(query=None):
+def index(query=None):
     if request.method == "GET":
         query = request.args.get("query", "")
-    return render_template("index.html", query=escape(query))
+
+        if query != "":
+            result = render_table(val_dic["graph"].query(query, initNs={"schema": SCHEMA_DOT_ORG}))
+        else:
+            result = ""
+
+        print(result)
+
+    return render_template("index.html", query=escape(query), results=result)
 
 
 @app.errorhandler(404)

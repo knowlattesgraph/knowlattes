@@ -35,7 +35,7 @@ class ProjetoDePesquisa:
 
     Attributes
     ----------
-    idMembro = None
+    id_membro = None
     anoInicio = None
     anoConclusao = None
     nome = ""
@@ -44,13 +44,13 @@ class ProjetoDePesquisa:
     ano = None
     """
 
-    def __init__(self, idMembro, partesDoItem):
+    def __init__(self, id_membro, partesDoItem):
         # partesDoItem[0]: Periodo do projeto de pesquisa
         # partesDoItem[1]: cargo e titulo do projeto
         # partesDoItem[2]: Descricao (resto)
 
-        self.idMembro = list([])
-        self.idMembro.append(idMembro)
+        self.id_membro = list([])
+        self.id_membro.append(id_membro)
 
         anos = partesDoItem[0].partition("-")
         self.anoInicio = anos[0].strip()
@@ -78,20 +78,20 @@ class ProjetoDePesquisa:
             s = '<span class="projects">' + str(self.anoInicio) + "-" + str(self.anoConclusao) + "</span>. "
         s += "<b>" + unicodedata.normalize("NFKD", self.nome).encode("ASCII", "ignore") + "</b>"
 
-        for i in range(0, len(self.idMembro)):
+        for i in range(0, len(self.id_membro)):
             s += "<br><i><font size=-1>" + self.descricao[i] + "</font></i>"
-            m = listaDeMembros[self.idMembro[i]]
+            m = listaDeMembros[self.id_membro[i]]
 
-            nome_membro = unicodedata.normalize("NFKD", m.nomeCompleto).encode("ASCII", "ignore")
+            nome_membro = unicodedata.normalize("NFKD", m.nome_completo).encode("ASCII", "ignore")
             s += '<br><i><font size=-1>Membro: <a href="' + m.url + '">' + nome_membro + "</a>.</font>"
 
         return s
 
     def compararCom(self, objeto):
-        if set(self.idMembro).isdisjoint(set(objeto.idMembro)) and similaridade_entre_cadeias(self.nome, objeto.nome):
+        if set(self.id_membro).isdisjoint(set(objeto.id_membro)) and similaridade_entre_cadeias(self.nome, objeto.nome):
             # Os IDs dos membros são agrupados.
             # Essa parte é importante para a geracao do relorio de projetos
-            self.idMembro.extend(objeto.idMembro)
+            self.id_membro.extend(objeto.id_membro)
 
             self.descricao.extend(objeto.descricao)  # Apenas juntamos as descrições
 
@@ -102,7 +102,7 @@ class ProjetoDePesquisa:
     # ------------------------------------------------------------------------ #
     def __str__(self):
         s = "\n[PROJETO DE PESQUISA] \n"
-        s += "+ID-MEMBRO   : " + str(self.idMembro) + "\n"
+        s += "+ID-MEMBRO   : " + str(self.id_membro) + "\n"
         s += "+ANO INICIO  : " + str(self.anoInicio) + "\n"
         s += "+ANO CONCLUS.: " + str(self.anoConclusao) + "\n"
         s += "+NOME        : " + self.nome.encode("utf8", "replace") + "\n"

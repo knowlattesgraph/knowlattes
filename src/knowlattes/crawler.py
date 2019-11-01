@@ -126,12 +126,12 @@ def crawler_main():
     """
     sys.excepthook = exception_handler
 
-    idMembro = sys.argv[1]
+    id_membro = sys.argv[1]
     criarDiretorio(DIRETORIO_CACHE)
 
     paginas_visitadas = []
 
-    paginas_a_visitar = [idMembro]
+    paginas_a_visitar = [id_membro]
 
     while len(paginas_visitadas) < NUMBER_OF_FILES_TO_CRAWL:
         print("Paginas visitadas " + str(len(paginas_visitadas)))
@@ -146,7 +146,7 @@ def crawler_main():
             try:
                 new_lattes = baixa_lattes(str(lattes_page))
                 if len(paginas_a_visitar) < MEM_CACHE_SIZE:
-                    paginas_a_visitar = new_lattes.listaIDLattesColaboradores + paginas_a_visitar
+                    paginas_a_visitar = new_lattes.lista_id_lattes_colaboradores + paginas_a_visitar
             except Exception as e:
                 print(e)
         else:

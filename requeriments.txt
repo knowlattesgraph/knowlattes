@@ -9,6 +9,7 @@ mechanize==0.4.3
 python-Levenshtein==0.12.0
 Flask==1.1.1
 rdflib-sqlalchemy==0.3.8
+toolz
 
 # Formating
 black==19.3b0

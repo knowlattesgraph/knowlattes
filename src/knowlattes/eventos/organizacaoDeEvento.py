@@ -34,7 +34,7 @@ class OrganizacaoDeEvento:
     Attributes
     ----------
     item = None  # dado bruto
-    idMembro = []
+    id_membro = []
     autores = None
     nomeDoEvento = None
     natureza = None
@@ -43,7 +43,7 @@ class OrganizacaoDeEvento:
     """
 
     item = None  # dado bruto
-    idMembro = []
+    id_membro = []
 
     autores = None
     nomeDoEvento = None
@@ -51,9 +51,9 @@ class OrganizacaoDeEvento:
     ano = None
     chave = None
 
-    def __init__(self, idMembro, partesDoItem=""):
-        self.idMembro = set([])
-        self.idMembro.add(idMembro)
+    def __init__(self, id_membro, partesDoItem=""):
+        self.id_membro = set([])
+        self.id_membro.add(id_membro)
 
         if not partesDoItem == "":
             # partesDoItem[0]: Numero (NAO USADO)
@@ -100,12 +100,12 @@ class OrganizacaoDeEvento:
         -------
             THe object if equal, otherwise, None
         """
-        if self.idMembro.isdisjoint(objeto.idMembro) and similaridade_entre_cadeias(
+        if self.id_membro.isdisjoint(objeto.id_membro) and similaridade_entre_cadeias(
             self.nomeDoEvento, objeto.nomeDoEvento
         ):
             # Os IDs dos membros são agrupados.
             # Essa parte é importante para a criação do GRAFO de colaborações
-            self.idMembro.update(objeto.idMembro)
+            self.id_membro.update(objeto.id_membro)
 
             if len(self.autores) < len(objeto.autores):
                 self.autores = objeto.autores
@@ -129,7 +129,7 @@ class OrganizacaoDeEvento:
     # ------------------------------------------------------------------------ #
     def __str__(self):
         s = "\n[ORGANIZACAO DE EVENTO]\n"
-        s += "+ID-MEMBRO   : " + str(self.idMembro) + "\n"
+        s += "+ID-MEMBRO   : " + str(self.id_membro) + "\n"
         s += "+AUTORES     : " + self.autores.encode("utf8", "replace") + "\n"
         s += "+EVENTO      : " + self.nomeDoEvento.encode("utf8", "replace") + "\n"
         s += "+ANO         : " + str(self.ano) + "\n"

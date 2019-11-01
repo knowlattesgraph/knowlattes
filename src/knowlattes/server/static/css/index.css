@@ -36,9 +36,24 @@ html {
 }
 
 textarea {
+    width: 100%;
     font-size: 1em;
     font-weight: bold;
     font-family: lucida console, monospace;
     border: 1px solid black;
     background-color: #EEE;
+}
+
+table {
+    width: 100%;
+    border: 1px solid black;
+}
+
+th {
+    height: 50px;
+    border: 1px solid black;
+}
+
+td {
+    border: 1px solid black;
 }
