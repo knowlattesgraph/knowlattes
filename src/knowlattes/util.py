@@ -284,7 +284,7 @@ def find_non_lattes_pages(dir_path, list_of_files):
     """
     not_lattes_pages = []
     for lattes_page in list_of_files:
-        with open(dir_path + lattes_page, encoding="iso-8859-1") as f:
+        with open(dir_path + "/" + lattes_page, encoding="iso-8859-1") as f:
             if "possivel baixar" in f.read():
                 not_lattes_pages.append(lattes_page)
 

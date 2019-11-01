@@ -334,7 +334,7 @@ class ParserLattes(HTMLParser):
             # 'output-xhtml': 0,
             # 'force-output': 1,
             "numeric-entities": 1,
-            'char-encoding': 'iso8859-1',
+            # "char-encoding": "iso8859-1",
             "input-encoding": "iso8859-1",
         }
 
@@ -615,7 +615,9 @@ class ParserLattes(HTMLParser):
                         iessimaAreaDeAtucao = AreaDeAtuacao(
                             self.partesDoItem
                         )  # criamos um objeto com a lista correspondentes às celulas da linha
-                        self.lista_area_de_atuacao.append(iessimaAreaDeAtucao)  # acrescentamos o objeto de AreaDeAtuacao
+                        self.lista_area_de_atuacao.append(
+                            iessimaAreaDeAtucao
+                        )  # acrescentamos o objeto de AreaDeAtuacao
 
                     if self.achouIdioma and len(self.partesDoItem) >= 2:
                         iessimoIdioma = Idioma(

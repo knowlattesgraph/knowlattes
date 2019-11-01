@@ -1,3 +1,25 @@
+from rdflib import Graph, plugin
+from rdflib.store import Store
+from rdflib_sqlalchemy import registerplugins
+
+import os
+import sys
+import re
+from tqdm import tqdm
+
+from knowlattes.util import find_non_lattes_pages, all_the_files_in_directory
+from knowlattes.parser_lattes import ParserLattes
+from knowlattes.crawler import exception_handler
+
+from rdflib import Graph, Namespace, plugin, Literal, URIRef
+from rdflib.store import Store
+from rdflib_sqlalchemy import registerplugins
+
+import re
+import hashlib
+from toolz import curry
+
+
 def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
     """Given a lattes page object, adds all the possible triples on graph
 
@@ -18,11 +40,6 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
 
 
     """
-    import re
-    import hashlib
-    from toolz import curry
-
-    from rdflib import Literal, URIRef
 
     @curry
     def add_non_duplicated(triple_or_quad, graph):
@@ -184,30 +201,18 @@ def generate_graph():
     -------
 
     """
-    import os
-    import sys
-    import re
-    from tqdm import tqdm
-
-    from knowlattes.util import find_non_lattes_pages, all_the_files_in_directory
-    from knowlattes.parser_lattes import ParserLattes
-    from knowlattes.crawler import exception_handler
-
-    from rdflib import Graph, Namespace, plugin
-    from rdflib.store import Store
-    from rdflib_sqlalchemy import registerplugins
-
     sys.excepthook = exception_handler
     registerplugins()
 
     # This is our ontology
     schema = Namespace("http://schema.org/version/latest/schema.nt#")
+    identifier = URIRef("knowlattes_uriref")
 
     # Create the Graph ###
     SQLALCHEMY_URL = "sqlite:///%(here)s/database.sqlite" % {"here": os.getcwd()}
     print(f"Creating the file to output: {SQLALCHEMY_URL}")
-    store = plugin.get("SQLAlchemy", Store)()
-    graph = Graph(store)
+    store = plugin.get("SQLAlchemy", Store)(identifier=identifier)
+    graph = Graph(store, identifier=identifier)
     graph.open(SQLALCHEMY_URL, create=True)
 
     # Get the lattes list
@@ -220,7 +225,7 @@ def generate_graph():
     for lattes_page in tqdm(lattes_pages):
         lattes_id = re.sub(".html", "", lattes_page)
 
-        file = open(base_path + lattes_page, "r", encoding="ISO-8859-1")
+        file = open(base_path + "/" + lattes_page, "r", encoding="ISO-8859-1")
         lattes_file = file.read()
         file.close()
 
@@ -228,21 +233,19 @@ def generate_graph():
 
         add_lattes_reasercher_to_graph(lattes_page, graph, schema)
 
+    graph.close()
 
-def load_grah():
-    import os
-    from rdflib import Graph, plugin
-    from rdflib.store import Store
-    from rdflib_sqlalchemy import registerplugins
 
+def load_grah(path=None):
     registerplugins()
+    identifier = URIRef("rdflib_test")
 
     # Create the Graph
-    SQLALCHEMY_URL = "sqlite:///%(here)s/database.sqlite" % {"here": os.getcwd()}
-    print(f"Creating the file to output: {SQLALCHEMY_URL}")
-    store = plugin.get("SQLAlchemy", Store)()
+    SQLALCHEMY_URL = "sqlite:///%(here)s/database.sqlite" % {"here": os.getcwd() if path is None else path}
+    print(f"Reading the file to output: {SQLALCHEMY_URL}")
+    store = plugin.get("SQLAlchemy", Store)(identifier=identifier)
 
-    graph = Graph(store)
+    graph = Graph(store, identifier=identifier)
     graph.open(SQLALCHEMY_URL, create=False)
 
     return graph

@@ -25,17 +25,13 @@
                                 rows="10"
                                 cols="86"
                                 form="form_id"
-                            ></textarea>
+                            >{% if query %}{{query}}{% endif %}</textarea>
                             <!-- <input type="text"> -->
                             <input type="submit">
                         </form>
                     </div>
-                    {% if query %}
                     <h3> Results </h3>
-                        <p> {{ query }} </p>
-                    {% else %}
-
-                    {% endif %}
+                    {{ results }}
                     <ul class="ul-welcome"></ul>
                     <p>&nbsp;</p>
                 </div>
