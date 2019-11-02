@@ -57,3 +57,12 @@ th {
 td {
     border: 1px solid black;
 }
+
+h1 {
+    font-size: xxx-large;
+}
+
+h1 a:hover, a:visited, a:link, a:active {
+    color: black;
+    text-decoration: none;
+}
