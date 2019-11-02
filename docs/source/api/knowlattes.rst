@@ -12,6 +12,7 @@ Subpackages
    knowlattes.producoesBibliograficas
    knowlattes.producoesTecnicas
    knowlattes.producoesUnitarias
+   knowlattes.server
 
 Submodules
 ----------
@@ -32,10 +33,10 @@ knowlattes.crawler module
    :undoc-members:
    :show-inheritance:
 
-knowlattes.graph\_generator module
-----------------------------------
+knowlattes.graph module
+-----------------------
 
-.. automodule:: knowlattes.graph_generator
+.. automodule:: knowlattes.graph
    :members:
    :undoc-members:
    :show-inheritance:
