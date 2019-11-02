@@ -34,3 +34,7 @@ simplejson==3.16.0
 gunicorn
 itsdangerous
 Werkzeug
+
+
+# This!
+-e ./
