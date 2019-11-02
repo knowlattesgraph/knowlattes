@@ -1,1 +1,1 @@
-web: python run.py
+web: python setup.py install & python run.py
