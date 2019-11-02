@@ -28,3 +28,9 @@ sphinx-rtd-theme
 sphinxcontrib-napoleon==0.7
 Pillow==6.2.0
 simplejson==3.16.0
+
+
+## Heroku Deployment
+gunicorn
+itsdangerous
+Werkzeug
