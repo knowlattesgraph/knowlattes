@@ -37,4 +37,4 @@ Werkzeug
 
 
 # This!
--e ./
+-e .
