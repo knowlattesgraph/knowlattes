@@ -19,6 +19,14 @@ import re
 import hashlib
 from toolz import curry
 
+@curry
+def add_non_duplicated(triple_or_quad, graph):
+    """
+        As RDFLib may fail when adding a triple that already exists, this function
+        checks before adding the triple if it is already on the graph
+    """
+    if triple_or_quad not in graph:
+        graph.add(triple_or_quad)
 
 def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
     """Given a lattes page object, adds all the possible triples on graph
@@ -40,16 +48,6 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
 
 
     """
-
-    @curry
-    def add_non_duplicated(triple_or_quad, graph):
-        """
-            As RDFLib may fail when adding a triple that already exists, this function
-            checks before adding the triple if it is already on the graph
-        """
-        if triple_or_quad not in graph:
-            graph.add(triple_or_quad)
-
     add_triple = add_non_duplicated(graph=graph)
 
     uri = lattes_page.id_membro
@@ -106,7 +104,7 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
             add_triple((URIRef(doi), schema.sameAs, URIRef(sameAsSpriger)))
 
     for artigo_aceito in lattes_page.listaArtigoAceito:
-        doi_url = artigo_periodico.doi
+        doi_url = artigo_aceito.doi
         doi = re.sub("http://dx.doi.org/", "", doi_url)
         # Added springer nature format (we can remove later if needed)
         sameAsSpriger = "http://scigraph.springernature.com/" + "pub." + re.sub("http://dx.doi.org/", "", doi_url)
@@ -191,7 +189,7 @@ def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
 
 def generate_graph():
     """Main function that, will parse all the cache folder and will generate a graph with all its content
-        
+
         Run this using python graph.py <path_to_dir_with_lattes_pages>
 
     Parameters
@@ -229,16 +227,18 @@ def generate_graph():
         lattes_file = file.read()
         file.close()
 
-        lattes_page = ParserLattes(lattes_id, lattes_file)
-
-        add_lattes_reasercher_to_graph(lattes_page, graph, schema)
+        try:
+            lattes_page = ParserLattes(lattes_id, lattes_file)
+            add_lattes_reasercher_to_graph(lattes_page, graph, schema)
+        except Exception as inst:
+            print(f"{inst}")
 
     graph.close()
 
 
 def load_grah(path=None):
     registerplugins()
-    identifier = URIRef("rdflib_test")
+    identifier = URIRef("knowlattes_uriref")
 
     # Create the Graph
     SQLALCHEMY_URL = "sqlite:///%(here)s/database.sqlite" % {"here": os.getcwd() if path is None else path}

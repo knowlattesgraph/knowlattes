@@ -58,6 +58,11 @@ def index(query=None):
     return render_template("index.html", query=escape(query), results=result)
 
 
+@app.route("/example")
+def examples():
+    return render_template("examples.html")
+
+
 @app.errorhandler(404)
 def not_found(error):
     return render_template("page_not_found.html"), 404

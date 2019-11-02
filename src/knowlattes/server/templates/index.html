@@ -15,7 +15,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
-                    <h1>Knowlattes Graph</h1>
+                    <h1><a href="/">Knowlattes Graph</a></h1>
                     <div>
                         <form method="get" action="/" id="form_id">
 
@@ -23,15 +23,18 @@
                                 name="query"
                                 class="input"
                                 rows="10"
-                                cols="86"
                                 form="form_id"
                             >{% if query %}{{query}}{% endif %}</textarea>
                             <!-- <input type="text"> -->
                             <input type="submit">
                         </form>
                     </div>
+                    {% if results %}
                     <h3> Results </h3>
                     {{ results }}
+                    {% else %}
+                    <a href="/example"><h2>Examples</h2></a>
+                    {% endif %}
                     <ul class="ul-welcome"></ul>
                     <p>&nbsp;</p>
                 </div>
