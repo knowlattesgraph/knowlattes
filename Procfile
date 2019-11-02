@@ -1,1 +1,1 @@
-web: python src/knowlattes/server/servery.py
+web: python src/knowlattes/server/server.py
