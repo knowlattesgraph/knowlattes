@@ -1,6 +1,6 @@
 # Knowlattes Graph
 
-[![Documentation Status](https://readthedocs.org/projects/knowlattes/badge/?version=101)](https://knowlattes.readthedocs.io/en/101/?badge=101)
+[![Documentation Status](https://readthedocs.org/projects/knowlattes/badge/?version=master)](https://knowlattes.readthedocs.io/en/master/?badge=master)
 
 ## Installing
 
