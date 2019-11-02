@@ -68,5 +68,8 @@ def not_found(error):
     return render_template("page_not_found.html"), 404
 
 
+def run():
+    app.run(debug=True)
+
 if __name__ == "__main__":
     app.run(debug=True)

@@ -6,7 +6,7 @@ from setuptools import setup
 # Used for the long_description.  It's nice, because now 1) we have a top level
 # README file and 2) it's easier to type in the README file than to put a raw
 # string in below ...
-def requirements_from_pip(filename="requeriments.txt"):
+def requirements_from_pip(filename="requirements.txt"):
     with open(filename, "r") as pip:
         return [l.strip() for l in pip if not l.startswith("#") and l.strip()]
 
