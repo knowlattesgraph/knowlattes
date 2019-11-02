@@ -6,7 +6,7 @@
 SPHINXPROJ    = knowlattes
 SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
-BUILDDIR      = build
+BUILDDIR      = _build
 APIDOC        = sphinx-apidoc
 APIDOCDIR     = ./source/api
 PROJECTDIR    = ../src/knowlattes

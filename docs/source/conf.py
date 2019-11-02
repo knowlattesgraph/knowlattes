@@ -27,8 +27,8 @@ copyright = current_year + ", Henrique & Thiago"
 author = "Henrique & Thiago"
 
 # The full version, including alpha/beta/rc tags
-release = "0.0.0"
-version = "0.0.0"
+release = "0.1.0"
+version = "0.1.0"
 
 
 # -- General configuration ---------------------------------------------------
@@ -44,15 +44,21 @@ extensions = [
     "sphinx.ext.mathjax",
     "nbsphinx",
     "sphinx.ext.coverage",
+    'sphinx.ext.autosectionlabel',
+    "sphinx.ext.githubpages",
+    'recommonmark',
 ]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
-# You can specify multiple suffix as a list of string:
-
-source_suffix = [".rst", ".md"]
+# The file extensions of source files. Sphinx considers the files with this suffix as sources. The value can be a dictionary mapping file extensions to file types. For example:
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'restructuredtext',
+    '.md': 'markdown',
+}
 
 # The master toctree document.
 master_doc = "index"
@@ -63,6 +69,8 @@ master_doc = "index"
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
 language = None
+
+autosectionlabel_prefix_document = True
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
