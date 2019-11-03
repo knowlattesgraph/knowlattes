@@ -68,9 +68,12 @@ def not_found(error):
     return render_template("page_not_found.html"), 404
 
 
-def run():
-    app.run(debug=True)
+def run(port=None):
+    if port:
+        app.run(debug=True, port=port)
+    else:
+        app.run(debug=True)
 
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app.run(debug=True)
