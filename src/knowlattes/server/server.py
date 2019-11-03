@@ -71,5 +71,6 @@ def not_found(error):
 def run():
     app.run(debug=True)
 
+
 if __name__ == "__main__":
     app.run(debug=True)

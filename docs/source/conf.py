@@ -44,9 +44,9 @@ extensions = [
     "sphinx.ext.mathjax",
     "nbsphinx",
     "sphinx.ext.coverage",
-    'sphinx.ext.autosectionlabel',
+    "sphinx.ext.autosectionlabel",
     "sphinx.ext.githubpages",
-    'recommonmark',
+    "recommonmark",
 ]
 
 # Add any paths that contain templates here, relative to this directory.
@@ -54,11 +54,7 @@ templates_path = ["_templates"]
 
 # The suffix(es) of source filenames.
 # The file extensions of source files. Sphinx considers the files with this suffix as sources. The value can be a dictionary mapping file extensions to file types. For example:
-source_suffix = {
-    '.rst': 'restructuredtext',
-    '.txt': 'restructuredtext',
-    '.md': 'markdown',
-}
+source_suffix = {".rst": "restructuredtext", ".txt": "restructuredtext", ".md": "markdown"}
 
 # The master toctree document.
 master_doc = "index"

@@ -19,6 +19,7 @@ import re
 import hashlib
 from toolz import curry
 
+
 @curry
 def add_non_duplicated(triple_or_quad, graph):
     """
@@ -27,6 +28,7 @@ def add_non_duplicated(triple_or_quad, graph):
     """
     if triple_or_quad not in graph:
         graph.add(triple_or_quad)
+
 
 def add_lattes_reasercher_to_graph(lattes_page, graph, schema):
     """Given a lattes page object, adds all the possible triples on graph
