@@ -37,4 +37,4 @@ Werkzeug
 
 
 # This!
---editable ./
+--editable .

@@ -8,7 +8,7 @@ from setuptools import setup
 # string in below ...
 def requirements_from_pip(filename="requirements.txt"):
     with open(filename, "r") as pip:
-        a = [l.strip() for l in pip if not l.startswith("#") and l.strip() and l.startswith("--")]
+        a = [l.strip() for l in pip if not l.startswith("#") and l.strip() and not ("--" in l)]
         print(a)
         return a
 
@@ -30,7 +30,7 @@ setup(
     url="http://github.com/knowlattes/knowlattes",
     long_description=read("README.md"),
     package_dir={"": "src"},
-    # install_requires=requirements_from_pip(),
+    install_requires=requirements_from_pip(),
     include_package_data=True,
     zip_safe=False,
     classifiers=["Programming Language :: Python :: 3.6"],
