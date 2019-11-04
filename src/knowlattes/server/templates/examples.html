@@ -89,6 +89,25 @@ LIMIT 10
                             <!-- <input type="text"> -->
                         </form>
                     </div>
+                    <div>
+                    <h3>Find the ID and name of people with given name Luis</h3>
+                         <form method="get" action="/" id="form_id">
+                             <textarea
+                                 name="query"
+                                 class="input"
+                                 form="form_id"
+                                 rows="5"
+                             >
+SELECT 
+    ?id
+    ?name
+WHERE {
+    ?id schema:givenName "Luis" .
+    ?id schema:name ?name
+}
+LIMIT 100
+                    </textarea>
+                    </div>
                     <ul class="ul-welcome"></ul>
                     <p>&nbsp;</p>
                 </div>
