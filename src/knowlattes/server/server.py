@@ -70,7 +70,7 @@ def not_found(error):
 
 def run(port=None):
     if port:
-        app.run(debug=True, port=port)
+        app.run(debug=True, host='0.0.0.0', port=port)
     else:
         app.run(debug=True)
 
