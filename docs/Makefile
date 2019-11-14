@@ -8,7 +8,7 @@ SPHINXBUILD   = sphinx-build
 SOURCEDIR     = source
 BUILDDIR      = _build
 APIDOC        = sphinx-apidoc
-APIDOCDIR     = ./source/api
+APIDOCDIR     = ./source
 PROJECTDIR    = ../src/knowlattes
 
 # Put it first so that "make" without argument is like "make help".
